@@ -1,0 +1,26 @@
+<br>
+<div class="container">
+    <table *ngIf="policies && step==0"  class="table table-hover">
+        <tr>
+            <th>Policy Name</th>
+            <th>Company Name</th>
+            <th>Cover(in Lakhs)</th>
+            <!-- <th>Cashless Hospitals</th>
+            <th>Monthly Premium</th>
+            <th>Yearly Premium</th> -->
+            <th *ngIf="!admin">Action</th>
+        </tr>
+        <tr *ngFor="let policy of policies">
+            <td>{{policy.policyName}}</td>
+            <td>{{policy.companyName}}</td>
+            <td>{{policy.coverInL}}</td>
+            <!-- <td>{{policy.cashlessHospitals}}</td>
+            <td>{{policy.premiumMonthly}}</td>
+            <td>{{policy.premiumYearly}}</td> -->
+            <td *ngIf="!admin"><button (click)="viewPolicy(policy)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Policy</button></td>
+        </tr>
+    </table>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg && step==0">{{errMsg}}</div>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="!policies && step==0">No Policy Found</div>
+</div>
+<router-outlet></router-outlet>

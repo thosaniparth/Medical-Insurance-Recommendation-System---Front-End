@@ -1,0 +1,64 @@
+<br>
+<div class="container">
+    <div *ngIf="policy" class="table table-hover">
+            <h2>Policy Details</h2>
+            <div class="form-group">
+                <label><b>Policy Name: </b></label>
+                <input type="text" class="form-control" disabled placeholder="{{policy.policyName}}"><br>
+            </div>
+            <div class="form-group">
+                <label><b>Company Name: </b></label>
+                <input type="text" class="form-control" disabled placeholder="{{policy.companyName}}"><br>
+            </div>
+            <div class="form-group">
+                <label><b>Cover(in Lakhs): </b></label>
+                <input type="text" class="form-control" disabled placeholder="{{policy.coverInL}}"><br>
+            </div>
+            <div class="form-group">
+                <label><b>Cashless Hospitals: </b></label>
+                <input type="text" class="form-control" disabled placeholder=" {{policy.cashlessHospitals}}"><br>
+            </div>
+            <div class="form-group">
+                    <label><b>Monthly Premium: </b></label>
+                    <input type="text" class="form-control" disabled placeholder=" Rs. {{policy.premiumMonthly}}/-"><br>
+            </div>
+            <div class="form-group">
+                    <label><b>Yearly Premium: </b></label>
+                    <input type="text" class="form-control" disabled placeholder="Rs. {{policy.premiumYearly}}/"><br>
+            </div>
+        
+        <!-- <h6>Policy Name: {{policy.policyName}}</h6>
+        <h6>Company Name: {{policy.companyName}}</h6>
+        <h6>Cover(in Lakhs): {{policy.coverInL}}</h6>
+        <h6>Cashless Hospitals: {{policy.cashlessHospitals}}</h6>
+        <h6>Monthly Premium: Rs. {{policy.premiumMonthly}}/-</h6>
+        <h6>Yearly Premium: Rs. {{policy.premiumYearly}}/-</h6> -->
+    </div>
+    <hr><br>
+    <button class="btn btn-primary" (click)="back()">Back to Main Policy List</button>
+    <br>
+    <h2 style="text-align: center;">Similar Policies</h2>
+    <table *ngIf="policyrecommends" class="table table-hover">
+        <tr>
+            <th>Policy Name</th>
+            <th>Company Name</th>
+            <th>Cover(in Lakhs)</th>
+            <!-- <th>Cashless Hospitals</th>
+            <th>Monthly Premium</th>
+            <th>Yearly Premium</th> -->
+            <th *ngIf="!admin">Action</th>
+        </tr>
+        <tr *ngFor="let rpolicy of policyrecommends">
+            <td>{{rpolicy.policyName}}</td>
+            <td>{{rpolicy.companyName}}</td>
+            <td>{{rpolicy.coverInL}}</td>
+            <!-- <td>{{rpolicy.cashlessHospitals}}</td>
+            <td>{{rpolicy.premiumMonthly}}</td>
+            <td>{{rpolicy.premiumYearly}}</td> -->
+            <td *ngIf="!admin"><button (click)="viewPolicy(rpolicy)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Policy</button></td>
+        </tr>
+    </table>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="!policy">No Policy Found</div>
+</div>
+<router-outlet></router-outlet>
